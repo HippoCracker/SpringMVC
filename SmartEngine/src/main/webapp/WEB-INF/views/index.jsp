@@ -112,9 +112,16 @@
           <p>
             <span class="word"> Nihil <span class="notation noun">NN</span> </span><span class="word"> minima <span class="notation verb">VB</span></span> tenetur voluptates repudiandae earum quam vel
           </p>
-          <p>
-            sequi eveniet velit non perferendis, odio voluptate amet consequuntur voluptas voluptatum temporibus debitis, quia ea! Vel beatae distinctio sunt architecto earum perspiciatis.
-          </p>
+          <div ng-repeat="sentence in sentences">
+            <p>
+              <div ng-repeat="words in sentence">
+                <div ng-repeat="word in words">
+                  <span>{{word.word}}</span>
+                  <span>{{word.tag}}</span>
+                </div>
+              </div>
+            </p>
+          </div>
         </section><!-- process-results -->
         <section class="download-options-container hide">
           <ul class="download-options">

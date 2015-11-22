@@ -1,22 +1,14 @@
 package com.smartengine.controller;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
-import com.smartengine.pojo.Shop;
-import org.json.simple.JSONObject;
-import org.omg.CORBA.Request;
+import com.smartengine.pojo.Sentence;
+import com.smartengine.pojo.SentenceList;
+import com.smartengine.pojo.Word;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,32 +33,27 @@ public class HomeController {
 
 	@RequestMapping(value = "file_upload", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Shop getShopInJSON() throws IOException {
+	public SentenceList getSentenceInJSON() throws IOException {
 
-//		List<String> list = new ArrayList();
-//		list.add("1");
-//		list.add("2");
-//		list.add("3");
-//
-//		JSONObject obj = new JSONObject();
-//		obj.put("name", "testname");
-//		obj.put("info", list);
-//		StringWriter out = new StringWriter();
-//		obj.writeJSONString(out);
-//		String jsonTxt = out.toString();
-//		System.out.println(jsonTxt);
+		Word w1 = new Word();
+		w1.setWord("This");
+		w1.setTag("N");
 
-		Shop shop = new Shop();
-		shop.setName("test");
-		shop.setNames(new String[] {"1", "2", "3"});
+		Word w2 = new Word();
+		w2.setWord("is");
+		w2.setTag("V");
 
-		return shop;
-	}
+		Word w3 = new Word();
+		w3.setWord("good");
+		w3.setTag("Adj");
 
-	@RequestMapping(value = "test", method = RequestMethod.POST)
-	@ResponseBody
-	public String getText() {
-		System.out.println("test method");
-		return "\"{ 'name' : 'person', 'id': '123'}\"";
+		Sentence s = new Sentence();
+		s.addWord(w1);
+		s.addWord(w2);
+		s.addWord(w3);
+
+		SentenceList sl = new SentenceList();
+		sl.addSentence(s);
+		return sl;
 	}
 }

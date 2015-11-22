@@ -25,16 +25,13 @@ neuApp.controller('MainCtrl',
 				url: 'file_upload',
 				method: 'GET',
 				data: { file: file }
-			})
-
-			file.upload.then(function (resp) {
+			}).then(function (resp) {
 				var data = resp.data;
-				console.log(data);
-				//resp = JSON.stringify(eval('('+ data +')'));
-				//var result = JSON.parse(data)
-				//console.log(result.toString());
-				$(".loading-effect-container").fadeOut(500);
+				$scope.sentences = data.sentences;
 			});
+			$scope.$apply();
+			$(".loading-effect-container").fadeOut(500);
+			$(".process-results-container").fadeIn(200);
 		}
 	};
 
